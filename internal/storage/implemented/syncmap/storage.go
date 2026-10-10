@@ -1,3 +1,5 @@
+// Package syncmap provides an in-memory [storage.Storage] backed by a map
+// guarded by a [sync.RWMutex].
 package syncmap
 
 import (
@@ -8,23 +10,27 @@ import (
 	"github.com/dejitarudemon/ignicula/internal/value"
 )
 
+// SyncMap is a concurrency-safe in-memory store.
 type SyncMap struct {
-	m map[*value.Key]value.Value
+	m map[value.Key]value.Value
 
 	mx sync.RWMutex
 }
 
+// NewSyncMap returns an empty [SyncMap].
 func NewSyncMap() *SyncMap {
 	return &SyncMap{
-		m: make(map[*value.Key]value.Value),
+		m: make(map[value.Key]value.Value),
 	}
 }
 
-func (s *SyncMap) Get(ctx context.Context, key value.Key) (value.Value, error) {
+// Get returns the value stored under key.
+// It returns [storage.NotFoundError] when the key is absent.
+func (s *SyncMap) Get(_ context.Context, key value.Key) (value.Value, error) {
 	s.mx.RLock()
 	defer s.mx.RUnlock()
 
-	v, ok := s.m[&key]
+	v, ok := s.m[key]
 	if !ok {
 		return value.Value{}, storage.NewNotFoundError(key)
 	}
@@ -32,18 +38,20 @@ func (s *SyncMap) Get(ctx context.Context, key value.Key) (value.Value, error) {
 	return v, nil
 }
 
-func (s *SyncMap) Put(ctx context.Context, key value.Key, value value.Value) error {
+// Put stores value under key, replacing any previous entry.
+func (s *SyncMap) Put(_ context.Context, key value.Key, val value.Value) error {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
-	s.m[&key] = value
+	s.m[key] = val
 	return nil
 }
 
-func (s *SyncMap) Delete(ctx context.Context, key value.Key) error {
+// Delete removes the entry for key. Missing keys are ignored.
+func (s *SyncMap) Delete(_ context.Context, key value.Key) error {
 	s.mx.Lock()
 	defer s.mx.Unlock()
 
-	delete(s.m, &key)
+	delete(s.m, key)
 	return nil
 }
