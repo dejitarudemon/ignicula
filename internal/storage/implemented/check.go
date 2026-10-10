@@ -1,3 +1,5 @@
+// Package implemented holds compile-time checks that concrete stores
+// satisfy [storage.Storage].
 package implemented
 
 import (
