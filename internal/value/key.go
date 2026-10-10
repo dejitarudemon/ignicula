@@ -1,3 +1,5 @@
 package value
 
-type Key []byte
+// Key uniquely identifies a value in storage.
+// Equal strings are the same key.
+type Key string
