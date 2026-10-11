@@ -8,7 +8,7 @@
 
 In-memory Ignicula server on [ignicula-framework](https://github.com/dejitarudemon/ignicula-framework) and [ignicula-wire](https://github.com/dejitarudemon/ignicula-wire).
 
-[English](#english) · [Русский](#русский)
+[English](#english) - [Русский](#русский)
 
 ---
 
