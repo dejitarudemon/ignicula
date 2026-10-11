@@ -14,11 +14,12 @@ func (s *Server) info(msg string, args ...any) {
 // warn records msg at warn level when a logger is set.
 // A nil logger is ignored. args are alternating keys and values.
 // Every call adds a "time" field with the current local time.
-func (s *Server) warn(msg string, args ...any) {
-	if s.logger != nil {
-		s.logger.Warn(msg, withTime(args)...)
-	}
-}
+// will be use next time. maybe
+// func (s *Server) warn(msg string, args ...any) {
+// 	if s.logger != nil {
+// 		s.logger.Warn(msg, withTime(args)...)
+// 	}
+// }
 
 // error records msg at error level when a logger is set.
 // A nil logger is ignored. args are alternating keys and values.
