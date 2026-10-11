@@ -18,6 +18,8 @@ const (
 	Uint64
 	// Float64 is an IEEE-754 64-bit floating-point number.
 	Float64
+	// String is a UTF-8 text value.
+	String
 	// JSON is a JSON-encoded document.
 	JSON
 )
@@ -38,6 +40,8 @@ func (t Type) String() string {
 		return "Uint64"
 	case Float64:
 		return "Float64"
+	case String:
+		return "String"
 	case JSON:
 		return "JSON"
 	}

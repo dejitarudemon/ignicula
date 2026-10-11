@@ -20,6 +20,7 @@ func TestTypeString(t *testing.T) {
 		{name: "int64", typ: value.Int64, want: "Int64"},
 		{name: "uint64", typ: value.Uint64, want: "Uint64"},
 		{name: "float64", typ: value.Float64, want: "Float64"},
+		{name: "string", typ: value.String, want: "String"},
 		{name: "json", typ: value.JSON, want: "JSON"},
 		{name: "unknown", typ: value.Type(255), want: "Unknown Type (255)"},
 	}
