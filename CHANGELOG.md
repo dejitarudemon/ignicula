@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 - 2026-10-11
+
+Changed:
+
+- Bump ignicula-framework to v0.8.2
+- Bump ignicula-wire to v1.2.0
+
 ## 0.1.0 - 2026-10-11
 
 First tagged release of the in-memory Ignicula server.
